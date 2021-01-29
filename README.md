@@ -1,12 +1,13 @@
 # yao-cli
 
 参考文章：
-[Everything you should know about Monorepo：那些你需要知道的 Monorepo 技术点](https://juejin.cn/post/6844904150770122759)
-[Monorepo 实战](https://juejin.cn/post/6866748110644822023)
-[lerna 和 yarn 实现 monorepo](https://juejin.cn/post/6855129007185362952)
-[【前端工程化基础 - CLI 篇】Vue CLI 是如何实现的](https://juejin.cn/post/6916303253487484942)
-[从剖析 Vue-cli 源码出发完整的 React 业务脚手架实践](https://juejin.im/post/6844904131266625549)
-[Vue CLI 源码探索](https://juejin.cn/post/6844904154360446983)
+
+- [Everything you should know about Monorepo：那些你需要知道的 Monorepo 技术点](https://juejin.cn/post/6844904150770122759)
+- [Monorepo 实战](https://juejin.cn/post/6866748110644822023)
+- [lerna 和 yarn 实现 monorepo](https://juejin.cn/post/6855129007185362952)
+- [【前端工程化基础 - CLI 篇】Vue CLI 是如何实现的](https://juejin.cn/post/6916303253487484942)
+- [从剖析 Vue-cli 源码出发完整的 React 业务脚手架实践](https://juejin.im/post/6844904131266625549)
+- [Vue CLI 源码探索](https://juejin.cn/post/6844904154360446983)
 
 ## 技术栈
 
@@ -40,7 +41,7 @@ yarn config set workspaces-experimental true
 #### 全局安装 Lerna
 
 ```sh
-npm install --global lerna
+yarn add lerna --global
 ```
 
 #### 初始化项目
