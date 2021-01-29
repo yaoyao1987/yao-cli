@@ -1,0 +1,36 @@
+{
+  "name": "yao-cli",
+  "private": true,
+  "repository": "https://github.com/yaoyao1987/yao-cli.git",
+  "author": "yaoyao1987 <yaolingyan1987@126.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/@yao/*",
+    "packages/vue-cli-version-marker"
+  ],
+  "scripts": {
+    "bootstrap": "node scripts/bootstrap.js",
+    "pretest": "yarn clean",
+    "lint": "eslint packages/**/*.js packages/**/bin/*",
+    "lint:fix": "eslint --fix packages/**/*.js packages/**/bin/*"
+  },
+  "lint-staged": {
+    "*.{js}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "packages/**/bin/*": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "commitizen": "^4.2.3",
+    "cz-lerna-changelog": "^2.0.3",
+    "eslint": "^7.18.0",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.5.3",
+    "rimraf": "^3.0.2"
+  }
+}
