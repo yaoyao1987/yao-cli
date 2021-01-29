@@ -1,0 +1,10 @@
+{
+  "name": "yao-cli-version-marker",
+  "version": "0.0.2",
+  "description": "version marker for @yao/cli",
+  "license": "MIT",
+  "main": "package.json",
+  "devDependencies": {
+    "@yao/cli": "^0.0.2"
+  }
+}
