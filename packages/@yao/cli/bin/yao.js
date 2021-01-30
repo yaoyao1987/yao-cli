@@ -5,6 +5,7 @@
 
 const { chalk, semver } = require('@yao/cli-shared-utils')
 const requiredVersion = require('../package.json').engines.node
+const leven = require('leven')
 
 function checkNodeVersion(wanted, id) {
   if (!semver.satisfies(process.version, wanted, { includePrerelease: true })) {

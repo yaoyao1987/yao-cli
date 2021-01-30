@@ -3,11 +3,11 @@ const path = require('path')
 const inquirer = require('inquirer')
 const { clearConsole } = require('./util/clearConsole.js')
 const templates = require('./util/templates');
-const { chalk, error, logWithSpinner, stopSpinner } = require('@yao/cli-shared-utils')
+const { chalk, log, error, logWithSpinner, stopSpinner } = require('@yao/cli-shared-utils')
 const validateProjectName = require('validate-npm-package-name')
 const download = require('download-git-repo')
 
-async function create(template, projectName) {
+async function init(template, projectName) {
   const hasTemplate = Object.keys(templates).includes(template)
 
   if (!hasTemplate) {
@@ -71,32 +71,22 @@ async function create(template, projectName) {
     }
   }
 
-  // download template
-  logWithSpinner("downloading template...");
-  await new Promise((resolve, reject) => {
-    download(currentTemplate, targetDir, { clone: true }, err => {
-      stopSpinner();
-      if (err) {
-        // TODO
-        console.log('err', err)
-        process.exit(1)
-        return reject(err)
-        process.exit(1)
-      }
-      resolve()
-    })
-  })
+  // download template and Generate
+  downloadAndGenerate(currentTemplate, targetDir, projectName)
 }
 
 module.exports = (...args) => {
-  return create(...args).catch(err => {
+  return init(...args).catch(err => {
     stopSpinner(false) // do not persist
     error(err)
     process.exit(1)
   })
 }
 
-// select a template
+/**
+ * select a template
+ * @param {*} template 
+ */
 async function selectTemplate(template) {
   const currentTemplate = templates[template]
   const choicesList = Object.keys(currentTemplate).map(item => { return { name: item, value: currentTemplate[item] } })
@@ -117,15 +107,12 @@ async function selectTemplate(template) {
  * @param {String} template
  */
 
-async function downloadAndGenerate(template, projectName) {
+function downloadAndGenerate(template, targetDir, projectName) {
   logWithSpinner("downloading template...");
-
-  download(template, projectName, { clone: true }, (err) => {
+  download(template, targetDir, { clone: true }, err => {
     stopSpinner();
-    if (err) {
-      error("Failed to download repo " + template + ": " + err.message.trim());
-    } else {
-      reSetting();
-    }
-  });
+    if (err) error("Failed to download repo " + template + ": " + err.message.trim());
+
+    log(`To get started:\n  ${chalk.green('cd ' + projectName + '\n  yarn install')}`)
+  })
 }
