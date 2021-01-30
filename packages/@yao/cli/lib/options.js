@@ -32,16 +32,16 @@ exports.loadOptions = () => {
     } catch (e) {
       error(
         `Error loading saved preferences: ` +
-        `~/.vuerc may be corrupted or have syntax errors. ` +
-        `Please fix/delete it and re-run vue-cli in manual mode.\n` +
+        `~/.yaorc may be corrupted or have syntax errors. ` +
+        `Please fix/delete it and re-run yao-cli in manual mode.\n` +
         `(${e.message})`
       )
       process.exit(1)
     }
     validate(cachedOptions, schema, () => {
       error(
-        `~/.vuerc may be outdated. ` +
-        `Please delete it and re-run vue-cli in manual mode.`
+        `~/.yaorc may be outdated. ` +
+        `Please delete it and re-run yao-cli in manual mode.`
       )
     })
     return cachedOptions
