@@ -37,6 +37,17 @@ program
   })
 
 program
+  .command('generate <template> <type> <name>')
+  .description('generate view|component|api|router|store')
+  .option('--dir <dir>')
+  .action((template, type, name) => {
+    if (minimist(process.argv.slice(3))._.length > 3) {
+      console.log(chalk.yellow('\n Info: You provided more than three argument.'))
+    }
+    require('../lib/generate')(template, type, name, minimist(process.argv.slice(3)))
+  })
+
+program
   .command('info')
   .description('print debugging information about your environment')
   .action((cmd) => {
